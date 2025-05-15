@@ -246,8 +246,8 @@ int main() {
   {
     question:
       "A strange device displays `?, ?, 5, ?, 9, ?, ?, 13, ?`. Nearby are the numbers `1, 3, 7, 11, 15, 17, 19`. Can you reconstruct the full sequence?",
-    answer: ["1,3,5,7,9,11,13,15,17,19", "1, 3, 5, 7, 9, 11, 13, 15, 17, 19", "1 3 5 7 9 11 13 15 17 19", "135791113151719"],
-    hint: "Look for a consistent difference between the visible numbers.",
+    answer: ["1, 3, 5, 7, 9, 11, 15, 13, 17", "1,3,5,7,9,11,15,13,17", "1 3 5 7 9 11 13 15 17", "1357911131517"],
+    hint: "Look for a consistent difference between the visible numbers. Is 19 really there? Doubtful!!!!",
     code: `
 #include <stdio.h>
 
@@ -264,7 +264,7 @@ void sort(int arr[], int n) {
 }
 
 int main() {
-  int incomplete_sequence[] = {-1, -1, 5, -1, 9, -1, -1, 13, -1, -1};
+  int incomplete_sequence[] = {-1, -1, 5, -1, 9, -1, -1, 13, -1};
   int missing_numbers[] = {1, 3, 7, 11, 15, 17, 19};
   int completed_sequence[10];
   sort(missing_numbers, 7);
