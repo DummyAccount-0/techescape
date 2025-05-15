@@ -66,8 +66,7 @@ int main() {
 #include <stdio.h>
 int main() {
   int sequence[] = {11, 4, 8, 15, 3};
-  // Your logic here to find the penultimate element
-  printf("Penultimate Element: ?\\n");
+  printf("Penultimate Element:%d ?", sequence[3]);
   return 0;
 }
 `
