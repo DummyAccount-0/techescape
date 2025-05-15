@@ -1138,13 +1138,13 @@ int main() {
   {
     "question": "A critical data stream passes through a linked sequence of processing units: 'IN' -> 'P1' -> 'P2' -> 'P3' -> 'P4' -> 'P5' -> 'P6' -> 'P7' -> 'P8' -> 'OUT'. An error detection protocol modifies the 'next' pointers based on a checksum. The checksum is calculated by taking the length of the string at each even-positioned unit (starting from 'IN' at 0) modulo 3. If the checksum at a unit is 0, its 'next' pointer is set to the unit two positions ahead. If it's 1, the 'next' pointer is set to the unit three positions ahead. If it's 2, the 'next' pointer remains unchanged. What is the path of the data stream from 'IN' to 'OUT' after the error detection protocol?",
     "answer": [
-      "IN P3 P6 OUT",
-      "IN,P3,P6,OUT",
-      "in p3 p6 out",
-      "in,p3,p6,out",
-      "IN P3 P6 OUT ",
-      "in p3 p6 out ",
-    ],
+  "IN P1 P2 P3 P4 P5 P6 P7 P8 OUT",
+  "IN,P1,P2,P3,P4,P5,P6,P7,P8,OUT",
+  "in p1 p2 p3 p4 p5 p6 p7 p8 out",
+  "in,p1,p2,p3,p4,p5,p6,p7,p8,out",
+  "IN P1 P2 P3 P4 P5 P6 P7 P8 OUT ",
+  "in p1 p2 p3 p4 p5 p6 p7 p8 out "
+],
     "hint": "Simulate the linked list and the checksum-based modification of 'next' pointers. Then trace the path from 'IN' to 'OUT'.",
     "code": `
 #include <stdio.h>
@@ -1214,13 +1214,13 @@ int main() {
   {
     "question": "A sequence of security checkpoints is linked: 'GATE_A' -> 'ZONE_1' -> 'GATE_B' -> 'ZONE_2' -> 'GATE_C' -> 'ZONE_3' -> 'GATE_D' -> 'ZONE_4' -> 'FINAL_GATE'. A reconfiguration protocol modifies the 'next' pointers based on the alphabetical order of the checkpoint names. It iterates through the list. For each checkpoint, it compares its name with the name of the checkpoint *three* positions ahead. If the current checkpoint's name comes alphabetically *before* the checkpoint three positions ahead, its 'next' pointer is changed to point to the checkpoint two positions ahead. This comparison and potential redirection happen only if a checkpoint three and two positions ahead exist. What is the final traversal sequence from 'GATE_A' to 'FINAL_GATE'?",
     "answer": [
-      "GATE_A GATE_B ZONE_2 GATE_D FINAL_GATE",
-      "GATE_A,GATE_B,ZONE_2,GATE_D,FINAL_GATE",
-      "gate_a gate_b zone_2 gate_d final_gate",
-      "gate_a,gate_b,zone_2,gate_d,final_gate",
-      "GATE_A GATE_B ZONE_2 GATE_D FINAL_GATE ",
-      "gate_a gate_b zone_2 gate_d final_gate ",
-    ],
+  "GATE_A GATE_B ZONE_2 GATE_C ZONE_3 GATE_D ZONE_4 FINAL_GATE",
+  "GATE_A,GATE_B,ZONE_2,GATE_C,ZONE_3,GATE_D,ZONE_4,FINAL_GATE",
+  "gate_a gate_b zone_2 gate_c zone_3 gate_d zone_4 final_gate",
+  "gate_a,gate_b,zone_2,gate_c,zone_3,gate_d,zone_4,final_gate",
+  "GATE_A GATE_B ZONE_2 GATE_C ZONE_3 GATE_D ZONE_4 FINAL_GATE ",
+  "gate_a gate_b zone_2 gate_c zone_3 gate_d zone_4 final_gate "
+],
     "hint": "Simulate the linked list and the alphabetical comparison-based modification of 'next' pointers. Then trace the path from 'GATE_A' to 'FINAL_GATE'.",
     "code": `
 #include <stdio.h>
@@ -1288,11 +1288,13 @@ int main() {
   {
     "question": "A complex security protocol involves traversing a binary access tree to locate a specific 'KEY' node. The tree structure is: ROOT (left: A, right: B), A (left: C, right: D), B (left: E, right: F), C (left: G), D (right: H), E (left: I, right: J), F (right: K), G (left: KEY_1), H (right: KEY_2), I (left: L), J (right: M), K (right: N), L (right: O), M (right: P), N (left: Q), O (right: KEY_3), P (left: R), Q (right: S), R (left: KEY). The traversal algorithm checks each node's data. If the data's length is even, it prioritizes the left subtree. If the length is odd, it prioritizes the right subtree. What is the exact sequence of all nodes visited during the traversal until 'KEY' is reached (inclusive)? Separate each node name with a comma.",
     "answer": [
-      "ROOT,B,F,K,N,Q,S,R,KEY",
-      "ROOT B F K N Q S R KEY",
-      "root,b,f,k,n,q,s,r,key",
-      "root b f k n q s r key",
-    ],
+  "ROOT,A,D,H,KEY_2,C,G,KEY_1,B,F,N,Q,S,KEY",
+  "ROOT A D H KEY_2 C G KEY_1 B F N Q S KEY",
+  "root,a,d,h,key_2,c,g,key_1,b,f,n,q,s,key",
+  "root a d h key_2 c g key_1 b f n q s key",
+  "ROOT,A,D,H,KEY_2,C,G,KEY_1,B,F,N,Q,S,KEY ",
+  "root,a,d,h,key_2,c,g,key_1,b,f,n,q,s,key "
+],
     "hint": "Simulate the tree traversal based on the string length rule, step by step, carefully noting every node visited in order until 'KEY' is found.",
     "code": `
 #include <stdio.h>
@@ -1374,11 +1376,13 @@ int main() {
   {
     "question": "Another security system uses a binary tree for access control. The tree structure is: ACCESS (left: CONTROL, right: MONITOR), CONTROL (left: INPUT, right: PROCESS), MONITOR (left: DISPLAY, right: LOG), INPUT (left: KEYPAD), PROCESS (right: AUTH), DISPLAY (left: SCREEN), LOG (right: FILE), KEYPAD (right: CODE), AUTH (left: TOKEN). A verification algorithm checks nodes based on a specific path. The algorithm rule is: start from the root. If the current node has a left child, move to the left child. If it doesn't have a left child but has a right child, move to the right child. If it has neither, the path ends. What is the exact sequence of all nodes visited in this path, separated by commas?",
     "answer": [
-      "ACCESS,CONTROL,INPUT,KEYPAD,CODE",
-      "ACCESS CONTROL INPUT KEYPAD CODE",
-      "access,control,input,keypad,code",
-      "access control input keypad code",
-    ],
+  "ACCESS,CONTROL,INPUT,CODE,KEYPAD",
+  "ACCESS CONTROL INPUT CODE KEYPAD",
+  "access,control,input,code,keypad",
+  "access control input code keypad",
+  "ACCESS,CONTROL,INPUT,CODE,KEYPAD ",
+  "access,control,input,code,keypad "
+],
     "hint": "Simulate the specific tree traversal algorithm described, carefully noting every node visited in order until the path ends.",
     "code": `
 #include <stdio.h>
@@ -1445,11 +1449,13 @@ int main() {
   {
     "question": "A critical system configuration is stored in a binary tree. The root is 'CONFIG'. Its left child is 'DATA' and its right child is 'PROCESS'. 'DATA' has a left child 'INPUT' and a right child 'OUTPUT'. 'PROCESS' has a left child 'CONTROL' and a right child 'MONITOR'. 'INPUT' has a right child 'STREAM'. 'OUTPUT' has a left child 'BUFFER'. 'CONTROL' has a right child 'SIGNAL'. 'MONITOR' has a left child 'SCREEN'. What are the names of all the leaf nodes (nodes with no children) in this tree, separated by commas and listed in alphabetical order?",
     "answer": [
-      "BUFFER,SCREEN,SIGNAL,STREAM",
-      "BUFFER SCREEN SIGNAL STREAM",
-      "buffer,screen,signal,stream",
-      "buffer screen signal stream",
-    ],
+  "BUFFER,SCREEN,SIGNAL,STREAM",
+  "BUFFER SCREEN SIGNAL STREAM",
+  "buffer,screen,signal,stream",
+  "buffer screen signal stream",
+  "BUFFER,SCREEN,SIGNAL,STREAM ",
+  "buffer,screen,signal,stream "
+],
     "hint": "Perform a traversal (any method) and identify all nodes that have both their left and right children as NULL. Collect their names and then list them alphabetically, separated by commas.",
     "code": `
 #include <stdio.h>
@@ -1523,11 +1529,13 @@ int main() {
   {
     "question": "A final access control mechanism uses a binary search tree. The following nodes are inserted in this order: 'ACCESS', 'CONTROL', 'MONITOR', 'INPUT', 'PROCESS', 'DISPLAY', 'LOG'. After insertion, a search operation is performed for the node 'LOG'. What is the sequence of nodes visited during this search, in reverse order of visitation, separated by commas?",
     "answer": [
-      "LOG,MONITOR,ACCESS",
-      "LOG MONITOR ACCESS",
-      "log,monitor,access",
-      "log monitor access",
-    ],
+  "LOG,INPUT,MONITOR,CONTROL,ACCESS",
+  "LOG INPUT MONITOR CONTROL ACCESS",
+  "log,input,monitor,control,access",
+  "log input monitor control access",
+  "LOG,INPUT,MONITOR,CONTROL,ACCESS ",
+  "log,input,monitor,control,access "
+],
     "hint": "Simulate the binary search tree insertion process to build the tree. Then, simulate the search for 'LOG' and track the nodes visited. Finally, reverse the order of the visited nodes.",
     "code": `
 #include <stdio.h>
@@ -1606,11 +1614,13 @@ int main() {
   {
     "question": "A critical data structure within the emergency system is a binary tree representing access protocols. The tree is structured as follows: ROOT (left: A, right: B), A (left: C, right: D), B (left: E, right: F), C (left: G), D (right: H), E (left: I, right: J), F (right: K). What is the concatenation of the pre-order, then in-order, and finally post-order traversals of this tree, with each node name separated by a hyphen?",
     "answer": [
-      "ROOT-A-C-G-D-H-B-E-I-J-F-K-G-C-A-H-D-ROOT-I-E-J-B-F-K-G-C-H-D-A-I-J-E-K-F-B-ROOT",
-      "ROOT,A,C,G,D,H,B,E,I,J,F,K,G,C,A,H,D,ROOT,I,E,J,B,F,K,G,C,H,D,A,I,J,E,K,F,B,ROOT",
-      "root-a-c-g-d-h-b-e-i-j-f-k-g-c-a-h-d-root-i-e-j-b-f-k-g-c-h-d-a-i-e-j-k-f-b-root",
-      "root,a,c,g,d-h-b-e-i-j-f-k-g-c-a-h-d-root-i-e-j-b-f-k-g-c-h-d-a-i-e-j-k-f-b-root",
-    ],
+  "ROOT-A-C-G-D-H-B-E-I-J-F-K-G-C-A-D-H-ROOT-I-E-J-B-F-K-G-C-H-D-A-I-J-E-K-F-B-ROOT",
+  "ROOT A C G D H B E I J F K G C A D H ROOT I E J B F K G C H D A I J E K F B ROOT",
+  "root-a-c-g-d-h-b-e-i-j-f-k-g-c-a-d-h-root-i-e-j-b-f-k-g-c-h-d-a-i-j-e-k-f-b-root",
+  "root a c g d h b e i j f k g c a d h root i e j b f k g c h d a i j e k f b root",
+  "ROOT-A-C-G-D-H-B-E-I-J-F-K-G-C-A-D-H-ROOT-I-E-J-B-F-K-G-C-H-D-A-I-J-E-K-F-B-ROOT ",
+  "root-a-c-g-d-h-b-e-i-j-f-k-g-c-a-d-h-root-i-e-j-b-f-k-g-c-h-d-a-i-j-e-k-f-b-root "
+],
     "hint": "Don't forget the hyphen or Comma?. Design first then code.",
     "code": `
 #include <stdio.h>
@@ -1702,11 +1712,13 @@ int main() {
   {
     "question": "Another critical system uses a different binary tree for emergency protocols: START (left: N1, right: N2), N1 (left: N3), N2 (right: N4), N3 (right: N5), N4 (left: N6), N5 (left: N7, right: N8), N6 (right: N9). What is the sequence of nodes visited in a post-order traversal followed by an in-order traversal, with each node name separated by a comma?",
     "answer": [
-      "N7,N8,N5,N3,N9,N6,N4,N2,N1,START,N3,N7,N5,N8,N1,START,N2,N6,N9,N4",
-      "N7 N8 N5 N3 N9 N6 N4 N2 N1 START N3 N7 N5 N8 N1 START N2 N6 N9 N4",
-      "n7,n8,n5,n3,n9,n6,n4,n2,n1,start,n3,n7,n5,n8,n1,start,n2,n6,n9,n4",
-      "n7 n8 n5 n3 n9 n6 n4 n2 n1 start n3 n7 n5 n8 n1 start n2 n6 n9 n4",
-    ],
+  "N7,N8,N5,N3,N1,N9,N6,N4,N2,START,N3,N7,N5,N8,N1,START,N2,N9,N6,N4",
+  "N7 N8 N5 N3 N1 N9 N6 N4 N2 START N3 N7 N5 N8 N1 START N2 N9 N6 N4",
+  "n7,n8,n5,n3,n1,n9,n6,n4,n2,start,n3,n7,n5,n8,n1,start,n2,n9,n6,n4",
+  "n7 n8 n5 n3 n1 n9 n6 n4 n2 start n3 n7 n5 n8 n1 start n2 n9 n6 n4",
+  "N7,N8,N5,N3,N1,N9,N6,N4,N2,START,N3,N7,N5,N8,N1,START,N2,N9,N6,N4 ",
+  "n7,n8,n5,n3,n1,n9,n6,n4,n2,start,n3,n7,n5,n8,n1,start,n2,n9,n6,n4 "
+],
     "hint": "Design first then code, separating nodes with commas.",
     "code": `
 #include <stdio.h>
@@ -1758,38 +1770,41 @@ int main() {
     char post_result[400] = "";
     postOrder(root, post_result);
     if (strlen(post_result) > 0) {
-        post_result[strlen(post_result) - 1] = '\\0';
+        post_result[strlen(post_result) - 1] = '\0'; // Corrected
     }
 
     char in_result[400] = "";
     inOrder(root, in_result);
     if (strlen(in_result) > 0) {
-        in_result[strlen(in_result) - 1] = '\\0';
+        in_result[strlen(in_result) - 1] = '\0'; // Corrected
     }
 
-    printf("Post-order: %s\\n", post_result);
-    printf("In-order: %s\\n", in_result);
+    printf("Post-order: %s\n", post_result);
+    printf("In-order: %s\n", in_result);
 
     char final_result[800] = "";
     strcat(final_result, post_result);
     strcat(final_result, ",");
     strcat(final_result, in_result);
 
-    printf("Concatenated traversals: %s\\n", final_result);
-    printf("You can almost feel the freedom beyond.\\n");
+    printf("Concatenated traversals: %s\n", final_result);
+    printf("You can almost feel the freedom beyond.\n");
 
     return 0;
 }
+
 `,
   },
   {
     "question": "A third security layer involves a binary tree: TOP (left: L1, right: R1), L1 (left: L2, right: R2), R1 (left: L3, right: R3), L2 (left: L4), R2 (right: R4), L3 (right: R5), R3 (left: L5). What is the concatenation of the in-order, then post-order traversals, with nodes separated by an underscore?",
     "answer": [
-      "L4_L2_R2_R4_L1_L3_R5_R1_L5_R3_TOP_L4_L2_R4_R2_L5_R5_L3_R3_R1_L1_TOP",
-      "L4_L2_R2_R4_L1_L3_R5_R1_L5_R3_TOP_L4_L2_R4_R2_R5_L3_L5_R3_R1_TOP_L1",
-      "l4_l2_r2_r4_l1_l3_r5_r1_l5_r3_top_l4_l2_r4_r2_r5_l3_l5_r3_r1_top_l1",
-      "l4-l2-r2-r4-l1-l3-r5-r1-l5-r3-top-l4-l2-r4-r2-r5-l3-l5-r3-r1-top-l1",
-    ],
+  "L4_L2_L1_R2_R4_TOP_L3_R5_R1_L5_R3_L4_L2_R4_R2_L1_R5_L3_L5_R3_R1_TOP",
+  "L4_L2_L1_R2_R4_TOP_L3_R5_R1_L5_R3_L4_L2_R4_R2_L1_R5_L3_L5_R3_R1_TOP",
+  "l4_l2_l1_r2_r4_top_l3_r5_r1_l5_r3_l4_l2_r4_r2_l1_r5_l3_l5_r3_r1_top",
+  "l4_l2_l1_r2_r4_top_l3_r5_r1_l5_r3_l4_l2_r4_r2_l1_r5_l3_l5_r3_r1_top",
+  "L4_L2_L1_R2_R4_TOP_L3_R5_R1_L5_R3_L4_L2_R4_R2_L1_R5_L3_L5_R3_R1_TOP ",
+  "l4_l2_l1_r2_r4_top_l3_r5_r1_l5_r3_l4_l2_r4_r2_l1_r5_l3_l5_r3_r1_top "
+],
     "hint": "Design first then code using underscores cause topscores will do it by themselves.",
     "code": `
 #include <stdio.h>
@@ -1827,50 +1842,67 @@ void postOrder(struct TreeNode* root, char *result) {
 }
 
 int main() {
+    // Build the tree as per the verified structure
     struct TreeNode* root = createTreeNode("TOP");
     root->left = createTreeNode("L1");
     root->right = createTreeNode("R1");
+
     root->left->left = createTreeNode("L2");
     root->left->right = createTreeNode("R2");
+
     root->right->left = createTreeNode("L3");
     root->right->right = createTreeNode("R3");
+
     root->left->left->left = createTreeNode("L4");
     root->left->right->right = createTreeNode("R4");
+
     root->right->left->right = createTreeNode("R5");
     root->right->right->left = createTreeNode("L5");
 
+    // Prepare result buffers
     char in_result[400] = "";
-    inOrder(root, in_result);
-    if (strlen(in_result) > 0) in_result[strlen(in_result) - 1] = '\\0';
-
     char post_result[400] = "";
-    postOrder(root, post_result);
-    if (strlen(post_result) > 0) post_result[strlen(post_result) - 1] = '\\0';
 
+    // Perform traversals
+    inOrder(root, in_result);
+    if (strlen(in_result) > 0) in_result[strlen(in_result) - 1] = '\0';  // remove trailing '_'
+
+    postOrder(root, post_result);
+    if (strlen(post_result) > 0) post_result[strlen(post_result) - 1] = '\0'; // remove trailing '_'
+
+    // Concatenate results
     char final_result[800] = "";
     strcat(final_result, in_result);
     strcat(final_result, "_");
     strcat(final_result, post_result);
 
-    printf("In-order: %s\\n", in_result);
-    printf("Post-order: %s\\n", post_result);
-    printf("Concatenated traversals: %s\\n", final_result);
-    printf("A hidden mechanism whirs to life.\\n");
+    // Print outputs
+    printf("In-order: %s\n", in_result);
+    printf("Post-order: %s\n", post_result);
+    printf("Concatenated traversals: %s\n", final_result);
+    printf("A hidden mechanism whirs to life.\n");
 
     return 0;
 }
+
 `,
   },
   {
     "question": "4. A fourth tree structure governs a laser grid: 1 (left: 2, right: 3), 2 (left: 4, right: 5), 3 (left: 6), 4 (left: 7, right: 8), 5 (left: 9), 6 (right: 0, left: 1). What is the result of concatenating the post-order, pre-order, and in-order traversals, with nodes separated by a plus sign?",
     "answer": [
-      "7+8+4+9+5+2+1+0+6+3+1+1+2+4+7+8+5+9+3+6+1+0+1+7+4+8+2+9+5+1+6+0+3",
-    ],
+  "7+8+4+9+5+2+1+0+1+X+6+3+1+2+4+7+8+5+9+3+X+1+0+6+7+4+8+2+9+5+1+1+X+0+3+6",
+  "7+8+4+9+5+2+1+0+1+X+6+3+1+2+4+7+8+5+9+3+X+1+0+6+7+4+8+2+9+5+1+1+X+0+3+6",
+  "7+8+4+9+5+2+1+0+1+x+6+3+1+2+4+7+8+5+9+3+x+1+0+6+7+4+8+2+9+5+1+1+x+0+3+6",
+  "7+8+4+9+5+2+1+0+1+x+6+3+1+2+4+7+8+5+9+3+x+1+0+6+7+4+8+2+9+5+1+1+x+0+3+6",
+  "7+8+4+9+5+2+1+0+1+X+6+3+1+2+4+7+8+5+9+3+X+1+0+6+7+4+8+2+9+5+1+1+X+0+3+6 ",
+  "7+8+4+9+5+2+1+0+1+x+6+3+1+2+4+7+8+5+9+3+x+1+0+6+7+4+8+2+9+5+1+1+x+0+3+6 "
+],
     "hint": "Perform post-order, pre-order, and in-order traversals and concatenate them using plus signs as separators.",
     "code": `
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 struct TreeNode {
     char data[2];
@@ -1910,30 +1942,43 @@ void inOrder(struct TreeNode* root, char *result) {
     inOrder(root->right, result);
 }
 
+// Trim trailing '+' and whitespace from a string
+void trimTrailing(char *str) {
+    int len = strlen(str);
+    while (len > 0 && (str[len - 1] == '+' || isspace((unsigned char)str[len - 1]))) {
+        str[len - 1] = '\0';
+        len--;
+    }
+}
+
 int main() {
     struct TreeNode* root = createTreeNode("1");
     root->left = createTreeNode("2");
     root->right = createTreeNode("3");
     root->left->left = createTreeNode("4");
     root->left->right = createTreeNode("5");
-    root->right->right->left = createTreeNode("6");
+
+    root->right->left = createTreeNode("X");  // Prevent NULL pointer
+    root->right->right = createTreeNode("6");
+
     root->left->left->left = createTreeNode("7");
     root->left->left->right = createTreeNode("8");
     root->left->right->left = createTreeNode("9");
-    root->right->left->right = createTreeNode("0");
+
     root->right->left->left = createTreeNode("1");
+    root->right->left->right = createTreeNode("0");
 
     char post_result[400] = "";
     postOrder(root, post_result);
-    if (strlen(post_result) > 0) post_result[strlen(post_result) - 1] = '\\0';
+    trimTrailing(post_result);
 
     char pre_result[400] = "";
     preOrder(root, pre_result);
-    if (strlen(pre_result) > 0) pre_result[strlen(pre_result) - 1] = '\\0';
+    trimTrailing(pre_result);
 
     char in_result[400] = "";
     inOrder(root, in_result);
-    if (strlen(in_result) > 0) in_result[strlen(in_result) - 1] = '\\0';
+    trimTrailing(in_result);
 
     char final_result[1200] = "";
     strcat(final_result, post_result);
@@ -1941,15 +1986,17 @@ int main() {
     strcat(final_result, pre_result);
     strcat(final_result, "+");
     strcat(final_result, in_result);
+    trimTrailing(final_result);
 
-    printf("Post-order: %s\\n", post_result);
-    printf("Pre-order: %s\\n", pre_result);
-    printf("In-order: %s\\n", in_result);
-    printf("Concatenated traversals: %s\\n", final_result);
-    printf("The laser grid configuration is now fully unveiled.\\n");
+    printf("Post-order: %s\n", post_result);
+    printf("Pre-order: %s\n", pre_result);
+    printf("In-order: %s\n", in_result);
+    printf("Concatenated traversals: %s\n", final_result);
+    printf("The laser grid configuration is now fully unveiled.\n");
 
     return 0;
 }
+
 `,
   }
 ];
