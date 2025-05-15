@@ -180,7 +180,7 @@ void sort(int arr[], int n) {
 }
 
 int main() {
-  int incomplete_sequence[] = {-1, 12, -1, -1, 20, -1, -1, -1, 28, -1};
+  int incomplete_sequence[] = {-1, 12, -1, -1, 20, -1, -1, -1, -1, 28};
   int missing_numbers[] = {10, 14, 16, 18, 22, 24, 26};
   int completed_sequence[10];
   sort(missing_numbers, 7);
