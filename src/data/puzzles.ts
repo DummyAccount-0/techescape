@@ -788,7 +788,7 @@ int main() {
   },
   {
     "question": "A highly secure laser grid requires a six-digit deactivation code. You intercept a sequence of transformations applied to an initial six-digit seed `[9, 2, 5, 1, 8, 3]`. The transformations are applied sequentially for each digit: If the digit's index (0-indexed) is even, the digit is replaced by `(digit * 2 + 3) % 10`. If the digit's index is odd, the digit is replaced by `(digit + 5) % 10`. After these transformations, the resulting six digits are then processed: if a digit is greater than 5, it is replaced by its complement to 9. What is the final six-digit deactivation code?",
-    "answer": ["1 7 3 6 1 0", "1,7,3,6,1,0", "173610"],
+    "answer": ["1 2 3 3 0 1", "1,2,3,3,0,1", "123301"],
     "hint": "Apply the transformations step-by-step, paying attention to the order and conditions.",
     "code": `
 #include <stdio.h>
@@ -826,10 +826,14 @@ int main() {
   },
   {
     "question": "A sequence of encrypted access keys is being processed. The initial key set is `['ALPHA', 'BRAVO', 'CHARLIE', 'DELTA']`. A series of operations is applied based on a control sequence `[1, 0, 2]`. For each number in the control sequence, perform the following operation on the key set: If the number is 0, swap the first two keys. If the number is 1, reverse the entire key set. If the number is 2, move the last key to the beginning. After all operations, the unlocking system reads the keys that start with the letter 'B' and concatenates them in the order they appear in the final key set. What is the final unlock string?",
-    "answer": ["ALPHA CHARLIE DELTA BRAVO",
-              "alpha charlie delta bravo",
-              "Alpha Charlie Delta Bravo",
-              ""],
+    "answer": [
+  "ALPHA CHARLIE DELTA BRAVO",
+  "alpha charlie delta bravo",
+  "Alpha Charlie Delta Bravo",
+  "ALPHA,CHARLIE,DELTA,BRAVO",
+  "alpha,charlie,delta,bravo",
+  "Alpha,Charlie,Delta,Bravo"
+],
     "hint": "Simulate the operations on the key set step by step based on the control sequence, then identify and concatenate the keys starting with 'B'.",
     "code": `
 #include <stdio.h>
@@ -890,7 +894,7 @@ int main() {
   },
   {
     "question": "A pressure-sensitive floor requires a sequence of numerical activations. The initial activation sequence is `[1, 5, 2]`. The system processes this sequence in rounds. In each round, for every even number in the current sequence, its value is doubled and added to the end of the sequence. For every odd number, it is decremented by 1 and added to the beginning of the sequence. This process repeats for two rounds. The final activation sequence is the resulting sequence. What is the final activation sequence?",
-    "answer": ["4 0 1 5 2 10 0 2","401521002","4,0,1,5,2,10,0,2"],
+    "answer": ["0,4,0,4,1,5,2,4,0,8,4,8","0 4 0 4 1 5 2 4 0 8 4 8","040415240848"],
     "hint": "Simulate the two rounds of processing step by step, modifying the activation sequence in each round.",
     "code": `
 #include <stdio.h>
@@ -938,14 +942,14 @@ int main() {
   const level8Questions = [
   {
     "question": "Within the ventilation system, a series of junctions is linked in a non-linear fashion. Starting at 'INIT', you need to reach 'TARGET'. The connections are defined as follows: 'INIT'->'A'->'B'->'C'->'D'->'E'->'F'->'G'->'H'->'I'->'J'->'K'->'L'->'M'->'N'->'O'->'P'->'Q'->'R'->'S'->'T'->'U'->'V'->'W'->'X'->'Y'->'TARGET'. A diagnostic program modifies these. It traverses the list. For every node at an odd position (starting from 'INIT' as position 0), its 'next' pointer is changed to point to the node that is two positions ahead in the original sequence. If a node is within two positions of the end, its 'next' pointer remains unchanged. What is the sequence of junctions you will traverse from 'INIT' to 'TARGET' after the diagnostic program modifies the connections?",
-    "answer": [
-      "INIT B D F H J L N P R T V X TARGET",
-      "INIT,B,D,F,H,J,L,N,P,R,T,V,X,TARGET",
-      "init b d f h j l n p r t v x target",
-      "init,b,d,f,h,j,l,n,p,r,t,v,x,target",
-      "INIT B D F H J L N P R T V X TARGET ",
-      "init b d f h j l n p r t v x target ",
-    ],
+    "answer":[
+  "INIT A C D E F G H I J K L M N O P Q R S T U V W X Y TARGET",
+  "INIT,A,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,TARGET",
+  "init a c d e f g h i j k l m n o p q r s t u v w x y target",
+  "init,a,c,d,e,f,g,h,i,j,k,l,m,n,o,p,q,r,s,t,u,v,w,x,y,target",
+  "INIT A C D E F G H I J K L M N O P Q R S T U V W X Y TARGET ",
+  "init a c d e f g h i j k l m n o p q r s t u v w x y target "
+],
     "hint": "Simulate the linked list creation and the modification. Track 'next' pointers after each odd-positioned node update. Traverse the modified list from 'INIT' to 'TARGET'.",
     "code": `
 #include <stdio.h>
@@ -1027,13 +1031,13 @@ int main() {
   {
     "question": "Another network of maintenance tunnels is described by a linked list: 'START' -> 'ONE' -> 'TWO' -> 'THREE' -> 'FOUR' -> 'FIVE' -> 'SIX' -> 'SEVEN' -> 'EIGHT' -> 'NINE' -> 'TEN' -> 'ELEVEN' -> 'TWELVE' -> 'END'. A security protocol reverses segments. If a node's position (starting from 'START' as 0) has a remainder of 4 when divided by 5 (excluding 0), the list is reversed from that node up to (but not including) the next such node, or the end. What is the path from 'START' to 'END' after this protocol?",
     "answer": [
-      "START ONE TWO THREE SEVEN SIX FIVE FOUR TWELVE ELEVEN TEN NINE END",
-      "START,ONE,TWO,THREE,SEVEN,SIX,FIVE,FOUR,TWELVE,ELEVEN,TEN,NINE,END",
-      "start one two three seven six five four twelve eleven ten nine end",
-      "start,one,two,three,seven,six,five,four,twelve,eleven,ten,nine,end",
-      "START ONE TWO THREE SEVEN SIX FIVE FOUR TWELVE ELEVEN TEN NINE END ",
-      "start one two three seven six five four twelve eleven ten nine end ",
-    ],
+  "START ONE TWO THREE FOUR FIVE NINE TEN",
+  "START,ONE,TWO,THREE,FOUR,FIVE,NINE,TEN",
+  "start one two three four five nine ten",
+  "start,one,two,three,four,five,nine,ten",
+  "START ONE TWO THREE FOUR FIVE NINE TEN ",
+  "start one two three four five nine ten "
+],
     "hint": "Simulate the linked list and the segment reversal based on the modulo 5 condition.",
     "code": `
 #include <stdio.h>
