@@ -722,7 +722,7 @@ int main() {
   printf("Unlock Sequence: ");
   if (dequeued1 != NULL) printf("%s ", dequeued1);
   if (dequeued2 != NULL) printf("%s ", dequeued2);
-  printf("\\nA small gear with the number '3' is found nearby.\\n");
+  printf("\\nA small gear with the numbers is found nearby.\\n");
   return 0;
 }
 `
@@ -733,9 +733,10 @@ int main() {
   {
     "question": "A malfunctioning automated cleaning bot is navigating a complex grid. It processes a sequence of eight numerical commands: `[3, 1, 0, 2, 1, 3, 0, 2]`. The bot's movement is determined by a dynamically evolving command set, initially `['FORWARD', 'LEFT', 'RIGHT', 'BACKWARD']`. For each numerical command, the command at that index is retrieved. If the index is even, and the retrieved command's length is greater than 5, the command at that index is moved to the end of the command set. If the index is odd, and the retrieved command's length is less than or equal to 4, the command at that index is moved to the beginning of the command set. What is the bot's final movement sequence?",
     "answer": [
-      "BACKWARD LEFT FORWARD RIGHT LEFT BACKWARD FORWARD RIGHT",
-      "backward left forward right left backward forward right",
-      "BACKWARD,LEFT,FORWARD,RIGHT,LEFT,BACKWARD,FORWARD,RIGHT",
+      "BACKWARD LEFT LEFT RIGHT FORWARD FORWARD LEFT BACKWARD",
+      "backward left left right forward forward left backward",
+      "BACKWARD,LEFT,LEFT,RIGHT,FORWARD,FORWARD,LEFT,BACKWARD",
+      "backward,left,left,right,forward,forward,left,backward"
     ],
     "hint": "Carefully simulate each step, tracking the changes to the command set and the retrieved movement. CAPITAL IS NEEDED, RYT?",
     "code": `
@@ -825,7 +826,10 @@ int main() {
   },
   {
     "question": "A sequence of encrypted access keys is being processed. The initial key set is `['ALPHA', 'BRAVO', 'CHARLIE', 'DELTA']`. A series of operations is applied based on a control sequence `[1, 0, 2]`. For each number in the control sequence, perform the following operation on the key set: If the number is 0, swap the first two keys. If the number is 1, reverse the entire key set. If the number is 2, move the last key to the beginning. After all operations, the unlocking system reads the keys that start with the letter 'B' and concatenates them in the order they appear in the final key set. What is the final unlock string?",
-    "answer": ["BRAVO", "bravo", "Bravo"],
+    "answer": ["ALPHA CHARLIE DELTA BRAVO",
+              "alpha charlie delta bravo",
+              "Alpha Charlie Delta Bravo",
+              ""],
     "hint": "Simulate the operations on the key set step by step based on the control sequence, then identify and concatenate the keys starting with 'B'.",
     "code": `
 #include <stdio.h>
