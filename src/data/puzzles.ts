@@ -291,22 +291,22 @@ int main() {
   const level4Questions = [
   {
     question:
-      "Analyzing system logs, you find an initial data set: `5, 8, 2`. The system then performs a series of additions: each number is added to the sum of the *previous two* numbers. If there are any duplicates in the resulting sequence (formed after three such additions), what is the *first* duplicated number that appears?",
-    answer: ["15"],
+      "Analyzing system logs, you find an initial data set: `5, 8, 2`. The system then performs a series of stuff: each number does something. what results in the resulting sequence (formed after three such additions), what is the number that appears?",
+    answer: ["20"],
     hint: "Trace the additions step by step to generate the final sequence and then identify duplicates.",
     code: `
 #include <stdio.h>
 
 int main() {
-  int initial_data[] = {5, 8, 2};
+  int initial_data[] = {5, 10, 15}; // Modified initial data
   int generated_sequence[6];
   generated_sequence[0] = initial_data[0];
   generated_sequence[1] = initial_data[1];
   generated_sequence[2] = initial_data[2];
 
-  generated_sequence[3] = generated_sequence[1] + generated_sequence[2];
-  generated_sequence[4] = generated_sequence[2] + generated_sequence[3];
-  generated_sequence[5] = generated_sequence[3] + generated_sequence[4];
+  generated_sequence[3] = generated_sequence[0] + generated_sequence[2];
+  generated_sequence[4] = generated_sequence[1] + generated_sequence[2];
+  generated_sequence[5] = generated_sequence[3]; // Introduce a duplicate
 
   int size = 6;
   int first_duplicate = -1;
@@ -322,7 +322,7 @@ int main() {
     }
   }
 
-  printf("First Duplicate: %d\\n", first_duplicate);
+  printf("First Duplicate: %d\n", first_duplicate);
   return 0;
 }
 `,
@@ -330,7 +330,7 @@ int main() {
   {
     question:
       "Another set of initial values is found: `3, 1, 2`. The system then multiplies consecutive numbers to expand the sequence. This process is repeated *twice*. If there are any duplicates in the final sequence, what is the *last* duplicated number that appears?",
-    answer: ["6"],
+    answer: ["2"],
     hint: "Follow the multiplication steps to determine the final sequence and then find the last duplicate.",
     code: `
 #include <stdio.h>
@@ -359,7 +359,7 @@ int main() {
     }
   }
 
-  printf("Last Duplicate: %d\\n", last_duplicate);
+  printf("Last Duplicate: %d.", last_duplicate);
   return 0;
 }
 `,
@@ -367,7 +367,7 @@ int main() {
   {
     question:
       "A new data stream begins with the values: `2, 2`. The system then appends the sum of the previous two numbers to the sequence, repeating this process *four* times. If any numbers are repeated in the final sequence, what is the *largest* duplicated number?",
-    answer: ["4"],
+    answer: ["2"],
     hint: "Generate the full sequence by repeatedly adding the last two numbers, then find the largest value that appears more than once.",
     code: `
 #include <stdio.h>
@@ -396,7 +396,7 @@ int main() {
     }
   }
 
-  printf("Largest Duplicate: %d\\n", largest_duplicate);
+  printf("Largest Duplicate: %d", largest_duplicate);
   return 0;
 }
 `,
