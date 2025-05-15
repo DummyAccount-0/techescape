@@ -53,8 +53,7 @@ int main() {
 #include <stdio.h>
 int main() {
   int sequence[] = {5, 9, 2, 7, 1};
-  // Your logic here to find the significant digit
-  printf("Significant Digit: ?\\n");
+  printf("Significant Digit:%d.",sequence[2]);
   return 0;
 }
 `
