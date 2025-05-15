@@ -436,7 +436,7 @@ int main() {
     }
   }
 
-  printf("Most Frequent PID: %d\\n", most_frequent_pid);
+  printf("Most Frequent PID: %d", most_frequent_pid);
   return 0;
 }
 `
@@ -473,7 +473,7 @@ int main() {
     }
   }
 
-  printf("Most Frequent ID: %d\\n", most_frequent_id);
+  printf("Most Frequent ID: %d", most_frequent_id);
   return 0;
 }
 `
@@ -513,7 +513,7 @@ int main() {
     }
   }
 
-  printf("Most Frequent Sensor: %s\\n", most_frequent_sensor);
+  printf("Most Frequent Sensor: %s", most_frequent_sensor);
   return 0;
 }
 `
@@ -573,7 +573,7 @@ int main() {
     }
   }
 
-  printf("Most Frequent File Path: %s\\n", most_frequent_path);
+  printf("Most Frequent File Path: %s", most_frequent_path);
   return 0;
 }
 `
